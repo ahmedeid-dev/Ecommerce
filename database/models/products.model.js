@@ -1,7 +1,7 @@
 import { model, Schema, Types } from "mongoose";
 
 // ! creating ProductSchema
-const productSchema = Schema({
+const productSchema =new Schema({
     title: {
         type: String,
         unique: true,

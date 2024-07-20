@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
 // ! creating BrandSchema
-const brandSchema = Schema({
+const brandSchema =new Schema({
     name: {
         type: String,
         unique: true,

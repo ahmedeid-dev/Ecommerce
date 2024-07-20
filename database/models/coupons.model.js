@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
 // ! creating CouponSchema
-const couponSchema = Schema({
+const couponSchema =new Schema({
     code: {
         type: String,
         unique: true,

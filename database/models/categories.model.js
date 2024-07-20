@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
 // ! creating CategorySchema
-const categorySchema = Schema({
+const categorySchema =new Schema({
     name: {
         type: String,
         unique: true,

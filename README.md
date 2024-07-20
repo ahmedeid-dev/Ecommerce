@@ -19,7 +19,7 @@
 ## Check Here :https://documenter.getpostman.com/view/32857096/2sA3kPo4Fh
 10- APIS IN POSTMAN tested
 
-## gitHub Repo : https://github.com/ahmedeid-dev/JobSearchApp
+## gitHub Repo : https://github.com/ahmedeid-dev/Ecommerce
 
 ## to run project follow those steps :
 

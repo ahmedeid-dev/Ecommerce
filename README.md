@@ -16,8 +16,9 @@
 
 9- postman collections included and published
 
-## Check Here :https://documenter.getpostman.com/view/32857096/2sA3kPo4Fh
 10- APIS IN POSTMAN tested
+
+## Check Here :https://documenter.getpostman.com/view/32857096/2sA3kPo4Fh
 
 ## gitHub Repo : https://github.com/ahmedeid-dev/Ecommerce
 

@@ -6,8 +6,10 @@ process.on("uncaughtException", (error) => {
 import serverConnection from "./database/serverConnection.js"
 import bootstrap from './src/bootstrap.js';
 import express from "express"
+
 const app = express()
 const port = 3000
+
 app.use(express.json())
 bootstrap(app)
 

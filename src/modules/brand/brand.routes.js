@@ -3,7 +3,6 @@ import { Router } from "express";
 
 // ! creating brandRouter
 const brandRouter = Router()
-
 brandRouter.route("/")
     .get(BC.getBrands)
     .post(BC.addBrand)

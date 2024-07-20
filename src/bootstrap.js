@@ -9,6 +9,7 @@ import orderRouter from "./modules/order/order.routes.js"
 import authRouter from "./modules/auth/auth.routes.js"
 import cartRouter from "./modules/cart/cart.routes.js"
 import userRouter from "./modules/user/user.routes.js"
+import appError from "../utils/appError.js"
 
 const bootstrap = (app) => {
 
@@ -33,7 +34,7 @@ const bootstrap = (app) => {
 
     // !  handling any wrong routes
     app.use("*", (req, res, next) => {
-        res.status(404).json({ message: "Not Found" })
+        next (new appError("Not Found", 404))
     })
 }
 

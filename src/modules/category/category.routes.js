@@ -1,4 +1,6 @@
+import validate from "../../middleware/validate.js";
 import * as CC from "./category.controllers.js"
+import * as CV from "./category.validations.js"
 import { Router } from "express";
 
 // ! creating categoryRouter
@@ -6,11 +8,11 @@ const categoryRouter = Router();
 
 categoryRouter.route("/")
     .get(CC.getCategories)
-    .post(CC.addCategory)
+    .post(validate(CV.addCategoryValidation),CC.addCategory)
 
 categoryRouter.route("/:id")
     .get(CC.getCategory)
-    .put(CC.updateCategory)
+    .put(validate(CV.updateCategoryValidation),CC.updateCategory)
     .delete(CC.deleteCategory)
 
 // ! exporting categoryRouter

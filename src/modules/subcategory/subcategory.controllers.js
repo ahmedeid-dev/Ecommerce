@@ -1,5 +1,5 @@
 import SubCategory from './../../../database/models/subCategories.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 import slugify from 'slugify';
 
 // ! getSubcategories controller

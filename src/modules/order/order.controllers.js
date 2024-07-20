@@ -1,5 +1,5 @@
 import Order from './../../../database/models/order.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 
 // ! getOrders controller
 const getOrders = catchError(async (req, res, next) => {

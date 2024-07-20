@@ -1,5 +1,5 @@
 import Coupon from './../../../database/models/coupons.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 
 // ! getCoupons controller
 const getCoupons = catchError(async (req, res, next) => {

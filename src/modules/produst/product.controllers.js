@@ -1,5 +1,5 @@
 import Product from './../../../database/models/products.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 
 // ! getProducts controller
 const getProducts = catchError(async (req, res, next) => {

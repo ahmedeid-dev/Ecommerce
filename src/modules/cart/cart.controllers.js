@@ -1,5 +1,5 @@
 import Cart from './../../../database/models/carts.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 
 // ! getCart controller
 const getCarts = catchError(async (req, res, next) => {

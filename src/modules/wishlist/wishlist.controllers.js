@@ -1,5 +1,5 @@
 import Wishlist from './../../../database/models/wishlists.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 
 // ! getWishlists controller
 const getWishlists = catchError(async (req, res, next) => {

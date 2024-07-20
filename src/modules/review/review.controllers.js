@@ -1,5 +1,5 @@
 import Review from './../../../database/models/review.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 
 // ! getReviews controller
 const getReviews = catchError(async (req, res, next) => {

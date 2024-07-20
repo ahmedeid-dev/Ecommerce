@@ -9,6 +9,7 @@ import orderRouter from "./modules/order/order.routes.js"
 import authRouter from "./modules/auth/auth.routes.js"
 import cartRouter from "./modules/cart/cart.routes.js"
 import userRouter from "./modules/user/user.routes.js"
+import globalError from "./middleware/globalError.js"
 import appError from "../utils/appError.js"
 
 const bootstrap = (app) => {
@@ -31,10 +32,11 @@ const bootstrap = (app) => {
     app.use("/carts", cartRouter)
     app.use("/auth", authRouter)
 
+    app.use(globalError)
 
     // !  handling any wrong routes
     app.use("*", (req, res, next) => {
-        next (new appError("Not Found", 404))
+        next(new appError("Not Found", 404))
     })
 }
 

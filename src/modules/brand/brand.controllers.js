@@ -1,5 +1,5 @@
 import Brand from './../../../database/models/brands.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js'
 import slugify from 'slugify';
 
 // ! getBrands controller

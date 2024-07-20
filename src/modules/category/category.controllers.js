@@ -1,5 +1,5 @@
 import Category from './../../../database/models/categories.model.js';
-import catchError from '../../../utils/globalError.js';
+import catchError from '../../../utils/catchError.js';
 import slugify from 'slugify';
 
 // ! getCategories controller

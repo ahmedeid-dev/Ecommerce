@@ -20,8 +20,6 @@
 
 ## Check Here :https://documenter.getpostman.com/view/32857096/2sA3kPo4Fh
 
-## gitHub Repo : https://github.com/ahmedeid-dev/Ecommerce
-
 ## to run project follow those steps :
 
 1- npm i

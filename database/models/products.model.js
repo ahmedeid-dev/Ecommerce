@@ -1,7 +1,7 @@
 import { model, Schema, Types } from "mongoose";
 
 // ! creating ProductSchema
-const productSchema =new Schema({
+const productSchema = new Schema({
     title: {
         type: String,
         unique: true,
@@ -64,6 +64,19 @@ const productSchema =new Schema({
         ref: "Brand"
     }
 })
+
+// ! adding image url
+const baseUrl = "http://localhost:3000/"
+productSchema.post("init", function (doc) {
+    doc.imgcover = baseUrl + doc.imgcover
+})
+
+// ! adding images url
+productSchema.post("init", function (docs) {
+    docs.images = docs.images.map(image => baseUrl + image)
+})
+
+
 
 // ! creating Productmodel
 const Product = model("Product", productSchema)

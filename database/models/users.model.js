@@ -1,7 +1,8 @@
 import { model, Schema } from "mongoose";
+import bcryptjs from "bcryptjs"
 
 // ! creating UserSchema
-const userSchema =new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
     },
@@ -24,6 +25,13 @@ const userSchema =new Schema({
         type: Boolean,
         default: false
     }
+})
+
+userSchema.pre("save", function (doc) {
+    doc.password = bcryptjs.hashSync(doc.password, 8)
+})
+userSchema.pre("updateOne", function (doc) {
+    if (doc.password) doc.password = bcryptjs.hashSync(doc.password, 8)
 })
 
 // ! creating Usermodel

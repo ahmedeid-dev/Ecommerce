@@ -10,7 +10,7 @@ const getBrands = catchError(async (req, res, next) => {
 
 // ! getBrand controller
 const getBrand = catchError(async (req, res, next) => {
-    const brand = await Brand.findById(req.params.id);
+    const brand = await Brand.findById(req.user._id);
     res.status(200).json({ status: "success", brand });
 })
 
@@ -33,7 +33,7 @@ const updateBrand = catchError(async (req, res, next) => {
 
 // ! deleteBrand controller
 const deleteBrand = catchError(async (req, res, next) => {
-    const brand = await Brand.findByIdAndDelete(req.params.id);
+    const brand = await Brand.findByIdAndDelete(req.user._id);
     res.status(200).json({ status: "brand deleted successfully", brand });
 })
 

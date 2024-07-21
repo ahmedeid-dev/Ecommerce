@@ -9,13 +9,13 @@ const brandRouter = Router()
 brandRouter.route("/")
     .get(BC.getBrands)
     .post(validate(BV.addBrandValidation), upload.single("logo"), BC.addBrand)
+    .put(validate(BV.updateBrandValidation), upload.single("logo"), BC.updateBrand)
+    .delete(BC.deleteBrand)
 
 // brandRouter.route("/:id/products")
 
 brandRouter.route("/:id")
     .get(BC.getBrand)
-    .put(validate(BV.updateBrandValidation), upload.single("logo"), BC.updateBrand)
-    .delete(BC.deleteBrand)
 
 // ! exporting brandRouter  
 export default brandRouter

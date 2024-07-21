@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
 // ! creating CategorySchema
-const categorySchema =new Schema({
+const categorySchema = new Schema({
     name: {
         type: String,
         unique: true,
@@ -18,9 +18,9 @@ const categorySchema =new Schema({
 });
 
 // ! adding image url
-const baseUrl = "http://localhost:3000/"
+const baseUrl = "http://localhost:3000/category/"
 categorySchema.post("init", function (doc) {
-    doc.image = baseUrl + doc.image
+    if (doc.image) doc.image = baseUrl + doc.image
 })
 
 // ! creating Categorymodel

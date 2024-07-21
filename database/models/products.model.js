@@ -18,7 +18,7 @@ const productSchema = new Schema({
         minLength: 10,
         maxLength: 2000
     },
-    imgcover: {
+    imageCover: {
         type: String
     },
     images: [String],
@@ -66,14 +66,14 @@ const productSchema = new Schema({
 })
 
 // ! adding image url
-const baseUrl = "http://localhost:3000/"
+const baseUrl = "http://localhost:3000/product/"
 productSchema.post("init", function (doc) {
-    doc.imgcover = baseUrl + doc.imgcover
+    if (doc.imageCover) doc.imageCover = baseUrl + doc.imageCover
 })
 
 // ! adding images url
 productSchema.post("init", function (docs) {
-    docs.images = docs.images.map(image => baseUrl + image)
+    if (docs.images) docs.images = docs.images.map(image => baseUrl + image)
 })
 
 

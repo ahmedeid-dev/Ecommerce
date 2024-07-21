@@ -29,7 +29,7 @@ const addProductValidation = joi.object({
             "string.min": "Description must be at least 10 characters long",
             "string.max": "Description must be at most 2000 characters long",
         }),
-    imgcover: joi.string()
+    imageCover: joi.string()
         .required()
         .messages({
             "string.empty": "Image is required",
@@ -113,7 +113,7 @@ const updateProductValidation = joi.object({
             "string.min": "Description must be at least 10 characters long",
             "string.max": "Description must be at most 2000 characters long",
         }),
-    imgcover: joi.string()
+    imageCover: joi.string()
         .messages({
             "string.empty": "Image is required",
         }),

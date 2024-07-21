@@ -25,5 +25,13 @@ const upload = multer({
     limits: { fileSize: 1024 * 1024 * 5 },
 })
 
+const uploadSingleFile = upload.single(fieldName)
+
+const uploadMultipleFiles = upload.array(fieldName, maxCount)
+
 // ! export upload
-export default upload
+export {
+    upload,
+    uploadSingleFile,
+    uploadMultipleFiles
+}

@@ -18,9 +18,9 @@ const brandSchema = new Schema({
 })
 
 // ! adding logo url
-const baseUrl = "http://localhost:3000/"
+const baseUrl = "http://localhost:3000/brand/"
 brandSchema.post("init", function (doc) {
-    doc.logo = baseUrl + doc.logo
+    if (doc.logo) doc.logo = baseUrl + doc.logo
 })
 
 // ! creating Brandmodel

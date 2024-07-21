@@ -1,3 +1,4 @@
+import { upload } from './../../../utils/fileUpload.js';
 import validate from "../../middleware/validate.js";
 import * as CC from "./category.controllers.js"
 import * as CV from "./category.validations.js"
@@ -8,11 +9,11 @@ const categoryRouter = Router();
 
 categoryRouter.route("/")
     .get(CC.getCategories)
-    .post(validate(CV.addCategoryValidation),CC.addCategory)
+    .post(validate(CV.addCategoryValidation), upload.single("image"), CC.addCategory)
 
 categoryRouter.route("/:id")
     .get(CC.getCategory)
-    .put(validate(CV.updateCategoryValidation),CC.updateCategory)
+    .put(validate(CV.updateCategoryValidation), CC.updateCategory)
     .delete(CC.deleteCategory)
 
 // ! exporting categoryRouter

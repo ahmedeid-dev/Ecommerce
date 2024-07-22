@@ -2,7 +2,7 @@ import validate from "../../middleware/validate.js";
 import * as PC from "./product.controllers.js"
 import * as PV from "./product.validations.js"
 import { Router } from "express";
-import { upload } from './../../../utils/fileUpload';
+import { upload } from './../../../utils/fileUpload.js';
 
 // ! creating productRouter
 const productRouter = Router();

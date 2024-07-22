@@ -25,14 +25,16 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     }
+}, {
+    timestamps: true
 })
 
-userSchema.pre("save", function (doc) {
-    doc.password = bcryptjs.hashSync(doc.password, 8)
+userSchema.pre("save", function () {
+    this.password = bcryptjs.hashSync(this.password, 8)
 })
-userSchema.pre("updateOne", function (doc) {
-    if (doc.password) doc.password = bcryptjs.hashSync(doc.password, 8)
-})
+// userSchema.pre("updateOne", function () {
+//     if (this.password) this.password = bcryptjs.hashSync(this.password, 8)
+// })
 
 // ! creating Usermodel
 const User = model("User", userSchema)

@@ -1,16 +1,15 @@
-import * as UC from "./user.controllers.js"
+import * as AC from "./user.controllers.js"
 import { Router } from "express";
 
 // ! creating userRouter
 const userRouter = Router()
 
-userRouter.route("/")
-    .get(UC.getUsers)
-    .post(UC.addUser)
+userRouter.route("/register").post(AC.register)
+userRouter.route("/login").post(AC.login)
+userRouter.route("changePassword").put(AC.changePassword)
+userRouter.route("forgotPassword").post(AC.forgotPassword)
+userRouter.route("resetPassword").put(AC.resetPassword)
+userRouter.route("logout").get(AC.logout)
 
-userRouter.route("/:id")
-    .get(UC.getUser)
-    .put(UC.updateUser)
-    .delete(UC.deleteUser)
 // ! exporting userRouter
 export default userRouter

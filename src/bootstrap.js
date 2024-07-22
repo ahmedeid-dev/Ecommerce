@@ -15,7 +15,7 @@ import appError from "../utils/appError.js"
 const bootstrap = (app) => {
 
     // ! handling root route
-    app.use("/", (req, res, next) => {
+    app.get("/", (req, res, next) => {
         res.status(200).json({ message: "Welcome to Ecommerce" })
     })
 
@@ -32,12 +32,13 @@ const bootstrap = (app) => {
     app.use("/carts", cartRouter)
     app.use("/auth", authRouter)
 
-    app.use(globalError)
 
     // !  handling any wrong routes
     app.use("*", (req, res, next) => {
         next(new appError("Not Found", 404))
     })
+
+    app.use(globalError)
 }
 
 // ! exporting bootstrap

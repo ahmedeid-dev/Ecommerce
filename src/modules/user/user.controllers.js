@@ -1,41 +1,96 @@
-import User from './../../../database/models/users.model.js';
+import User from '../../../database/models/users.model.js';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-// ! getUsers controller
-const getUsers = async (req, res, next) => {
-    const users = await User.find();
-    res.status(200).json({ status: "success", count: users.length, users });
-}
-
-// ! addUser controller
-const addUser = async (req, res, next) => {
+// ! register controller
+const register = async (req, res, next) => {
     const user = await User.create(req.body);
-    res.status(201).json({ status: "user added successfully", user });
+    const token = jwt.sign({
+        _id: user._id,
+        role: user.role,
+        name: user.name,
+        email: user.email
+    }, "authToken")
+    res.status(201).json({ status: "user added successfully", user, token });
 }
 
-// ! getUser controller
-const getUser = async (req, res, next) => {
-    const user = await User.findById(req.params.id);
-    res.status(200).json({ status: "success", user });
+// ! login controller
+const login = async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        return res.status(401).json({ status: "error", error: "invalid credentials" });
+    }
+    const isMatch = await user.isValidPassword(req.body.password);
+    if (!isMatch) {
+        return res.status(401).json({ status: "error", error: "invalid credentials" });
+    }
+    const token = jwt.sign({
+        _id: user._id,
+        role: user.role,
+        name: user.name,
+        email: user.email
+    }, "authToken")
+    res.status(200).json({ status: "success", user, token });
 }
 
-// ! updateUser Controller
-const updateUser = async (req, res, next) => {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body,
-        { new: true, runValidators: true })
-    res.status(200).json({ status: "user updated successfully", user });
+// ! changePassword controller
+const changePassword = async (req, res, next) => {
+    const user = await User.findById(req.user._id);
+    const match = await bcryptjs.compareSync(req.body.oldPassword, user.password);
+    // const isMatch = await user.isValidPassword(req.body.password);
+    if (!match) return res.status(401).json({ status: "error", error: "invalid credentials" });
+    user.password = req.body.newPassword;
+    const token = jwt.sign({
+        _id: user._id,
+        role: user.role,
+        name: user.name,
+        email: user.email
+    }, "authToken")
+    await user.save();
+    res.status(200).json({ status: "password changed successfully", user, token });
 }
 
-// ! deleteUser Controller
-const deleteUser = async (req, res, next) => {
-    const user = await User.findByIdAndDelete(req.params.id);
-    res.status(200).json({ status: "user deleted successfully", user });
+// ! forgetPassword controller
+const forgotPassword = async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        return res.status(401).json({ status: "error", error: "invalid credentials" });
+    }
+    const token = jwt.sign({
+        _id: user._id,
+        role: user.role,
+        name: user.name,
+        email: user.email
+    }, "authToken")
+    res.status(200).json({ status: "success", user, token });
 }
 
-// ! exporting controllers
+// ! resetPassword controller
+const resetPassword = async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        return res.status(401).json({ status: "error", error: "invalid credentials" });
+    }
+    const token = jwt.sign({
+        _id: user._id,
+        role: user.role,
+        name: user.name,
+        email: user.email
+    }, "authToken")
+    res.status(200).json({ status: "success", user, token });
+}
+
+// ! logout controller
+const logout = async (req, res, next) => {
+    res.status(200).json({ status: "success", message: "user logged out successfully" });
+}
+
+// ! export controllers
 export {
-    getUsers,
-    getUser,
-    addUser,
-    updateUser,
-    deleteUser
+    register,
+    login,
+    changePassword,
+    forgotPassword,
+    resetPassword,
+    logout
 }

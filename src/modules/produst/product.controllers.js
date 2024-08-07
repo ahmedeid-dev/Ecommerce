@@ -1,6 +1,7 @@
 import Product from './../../../database/models/products.model.js';
 import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
+import { deleteOne } from '../../handler/handlers.js';
 import slugify from 'slugify';
 
 // ! getProducts controller
@@ -39,16 +40,17 @@ const updateProduct = catchError(async (req, res, next) => {
 })
 
 // ! deleteProduct controller
-const deleteProduct = catchError(async (req, res, next) => {
-    const product = await Product.findByIdAndDelete(req.params.id);
-    res.status(200).json({ status: "product deleted successfully", product });
-})
+const deleteProduct = deleteOne(Product)
+// const deleteProduct = catchError(async (req, res, next) => {
+//     const product = await Product.findByIdAndDelete(req.params.id);
+//     res.status(200).json({ status: "product deleted successfully", product });
+// })
 
 // ! exporting controllers
 export {
-    getProducts,
     getProduct,
     addProduct,
+    getProducts,
     updateProduct,
-    deleteProduct
+    deleteProduct,
 }

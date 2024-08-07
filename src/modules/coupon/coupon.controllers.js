@@ -1,10 +1,17 @@
 import Coupon from './../../../database/models/coupons.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 
 // ! getCoupons controller
 const getCoupons = catchError(async (req, res, next) => {
-    const coupons = await Coupon.find();
-    res.status(200).json({ status: "success", count: coupons.length, coupons });
+    const features = apiFeatures(Coupon.find(), req.query)
+    let coupons = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: coupons.length,
+        }, coupons
+    });
 })
 
 // ! getCoupon controller

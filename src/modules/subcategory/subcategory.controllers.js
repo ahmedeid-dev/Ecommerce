@@ -1,11 +1,18 @@
 import SubCategory from './../../../database/models/subCategories.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 import slugify from 'slugify';
 
 // ! getSubcategories controller
 const getSubcategories = catchError(async (req, res, next) => {
-    const subcategories = await SubCategory.find();
-    res.status(200).json({ status: "success", subcategories });
+    const features = apiFeatures(SubCategory.find(), req.query)
+    let subcategories = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: subcategories.length,
+        }, subcategories
+    });
 }
 )
 // ! getSubcategory controller

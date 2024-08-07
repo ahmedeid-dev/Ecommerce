@@ -1,11 +1,18 @@
 import Brand from './../../../database/models/brands.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js'
 import slugify from 'slugify';
 
 // ! getBrands controller
 const getBrands = catchError(async (req, res, next) => {
-    const brands = await Brand.find();
-    res.status(200).json({ status: "success", count: brands.length, brands });
+    const features = apiFeatures(Brand.find(), req.query)
+    let brands = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: brands.length,
+        }, brands
+    });
 })
 
 // ! getBrand controller

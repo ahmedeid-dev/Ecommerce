@@ -1,10 +1,17 @@
 import Order from './../../../database/models/order.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 
 // ! getOrders controller
 const getOrders = catchError(async (req, res, next) => {
-    const orders = await Order.find();
-    res.status(200).json({ status: "success", count: orders.length, orders });
+    const features = apiFeatures(Order.find(), req.query)
+    let orders = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: orders.length,
+        }, orders
+    });
 })
 
 // ! getOrder controller

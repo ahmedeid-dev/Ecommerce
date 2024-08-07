@@ -1,10 +1,17 @@
 import Wishlist from './../../../database/models/wishlists.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 
 // ! getWishlists controller
 const getWishlists = catchError(async (req, res, next) => {
-    const wishlists = await Wishlist.find();
-    res.status(200).json({ status: "success", count: wishlists.length, wishlists });
+    const features = apiFeatures(Wishlist.find(), req.query)
+    let wishlists = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: wishlists.length,
+        }, wishlists
+    });
 })
 
 // ! getWishlist controller

@@ -1,10 +1,17 @@
 import Product from './../../../database/models/products.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 
 // ! getProducts controller
 const getProducts = catchError(async (req, res, next) => {
-    const products = await Product.find();
-    res.status(200).json({ status: "success", count: products.length, products });
+    const features = apiFeatures(Product.find(), req.query)
+    let products = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: products.length,
+        }, products
+    });
 })
 
 // ! getProduct controller

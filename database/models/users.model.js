@@ -24,6 +24,13 @@ const userSchema = new Schema({
     isBlocked: {
         type: Boolean,
         default: false
+    },
+    otp: {
+        type: String,
+        length:6
+    },
+    otpExpireAt: {
+        type:Date
     }
 }, {
     timestamps: true

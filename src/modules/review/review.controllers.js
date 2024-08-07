@@ -1,10 +1,17 @@
 import Review from './../../../database/models/review.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 
 // ! getReviews controller
 const getReviews = catchError(async (req, res, next) => {
-    const reviews = await Review.find();
-    res.status(200).json({ status: "success", count: reviews.length, reviews });
+    const features = apiFeatures(Review.find(), req.query)
+    let reviews = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: reviews.length,
+        }, reviews
+    });
 }
 )
 // ! getReview controller

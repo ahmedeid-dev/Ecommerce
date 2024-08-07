@@ -1,10 +1,17 @@
 import Cart from './../../../database/models/carts.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 
 // ! getCart controller
 const getCarts = catchError(async (req, res, next) => {
-    const carts = await Cart.find();
-    res.status(200).json({ status: "success", count: carts.length, carts });
+    const features = apiFeatures(Cart.find(), req.query)
+    let carts = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: carts.length,
+        }, carts
+    });
 })
 
 // ! getCart controller

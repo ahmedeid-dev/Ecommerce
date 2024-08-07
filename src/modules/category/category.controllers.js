@@ -1,11 +1,18 @@
 import Category from './../../../database/models/categories.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
 import slugify from 'slugify';
 
 // ! getCategories controller
 const getCategories = catchError(async (req, res, next) => {
-    const categories = await Category.find();
-    res.status(200).json({ status: "success", count: categories.length, categories });
+    const features = apiFeatures(Category.find(), req.query)
+    let categories = await features.query;
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: categories.length,
+        }, categories
+    });
 }
 )
 // ! getCategory controller

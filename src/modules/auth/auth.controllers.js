@@ -1,12 +1,19 @@
 import User from '../../../database/models/users.model.js';
+import apiFeatures from '../../../utils/apiFeatures.js';
 import appError from './../../../utils/appError.js';
 import bcryptjs from 'bcryptjs';
 
 // ! getUsers controller
 const getUsers = async (req, res, next) => {
-    const users = await User.find();
+    const features = apiFeatures(User.find(), req.query)
+    let users = await features.query;
     users.map(user => user.password = undefined);
-    res.status(200).json({ status: "success", count: users.length, users });
+    res.status(200).json({
+        status: "success", meta: {
+            page: features.page,
+            count: users.length,
+        }, users
+    });
 }
 
 // ! addUser controller

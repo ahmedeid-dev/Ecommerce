@@ -1,6 +1,7 @@
 import Product from './../../../database/models/products.model.js';
 import apiFeatures from '../../../utils/apiFeatures.js';
 import catchError from '../../../utils/catchError.js';
+import slugify from 'slugify';
 
 // ! getProducts controller
 const getProducts = catchError(async (req, res, next) => {

@@ -27,21 +27,25 @@ const userSchema = new Schema({
     },
     otp: {
         type: String,
-        length:6
+        length: 6
     },
     otpExpireAt: {
-        type:Date
+        type: Date
     }
 }, {
     timestamps: true
 })
 
+
+// ! hashing password before saving to database
 userSchema.pre("save", function () {
     this.password = bcryptjs.hashSync(this.password, 8)
 })
-// userSchema.pre("updateOne", function () {
-//     if (this.password) this.password = bcryptjs.hashSync(this.password, 8)
-// })
+
+// ! hashing password before updating to database
+userSchema.pre("findOneAndUpdate", function () {
+    if (this._update) this._update.password = bcryptjs.hashSync(this._update.password, 8)
+})
 
 // ! creating Usermodel
 const User = model("User", userSchema)

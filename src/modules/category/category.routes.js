@@ -1,3 +1,4 @@
+import subcategoryRouter from '../subcategory/subcategory.routes.js';
 import { upload } from './../../../utils/fileUpload.js';
 import validate from "../../middleware/validate.js";
 import * as CC from "./category.controllers.js"
@@ -6,6 +7,8 @@ import { Router } from "express";
 
 // ! creating categoryRouter
 const categoryRouter = Router();
+
+categoryRouter.use("/:categoryId/subcategories", subcategoryRouter)
 
 categoryRouter.route("/")
     .get(CC.getCategories)

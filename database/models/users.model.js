@@ -1,5 +1,6 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 import bcryptjs from "bcryptjs"
+import { string } from "joi";
 
 // ! creating UserSchema
 const userSchema = new Schema({
@@ -32,7 +33,16 @@ const userSchema = new Schema({
     },
     otpExpireAt: {
         type: Date
-    }
+    },
+    wishlist: [{
+        type: Types.ObjectId,
+        ref: "Product"
+    }],
+    addresses: [{
+        city: String,
+        phone: String,
+        street: String,
+    }],
 }, {
     // virtuals: true,
     toJSON: { virtuals: true },

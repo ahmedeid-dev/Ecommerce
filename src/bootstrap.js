@@ -2,6 +2,7 @@ import subcategoryRouter from "./modules/subcategory/subcategory.routes.js"
 import wishlistRouter from "./modules/wishlist/wishlist.routes.js"
 import categoryRouter from "./modules/category/category.routes.js"
 import productRouter from "./modules/produst/product.routes.js"
+import addressRouter from "./modules/address/address.routes.js"
 import couponRouter from "./modules/coupon/coupon.routes.js"
 import reviewRouter from "./modules/review/review.routes.js"
 import globalError from "./middleware/auth/globalError.js"
@@ -22,6 +23,7 @@ const bootstrap = (app) => {
     app.use("/subcategories", subcategoryRouter)
     app.use("/categories", categoryRouter)
     app.use("/wishlists", wishlistRouter)
+    app.use("/addresses", addressRouter)
     app.use("/products", productRouter)
     app.use("/coupons", couponRouter)
     app.use("/reviews", reviewRouter)

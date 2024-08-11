@@ -7,13 +7,11 @@ const wishlistRouter = Router();
 wishlistRouter.use(AM.protectedRoute, AM.allowedTo('user'))
 
 wishlistRouter.route("/")
-    .get(WC.getWishlists)
-    .post(WC.addWishlist)
+    .post(WC.addToWishlist)
+    .get(WC.getLoggedUserWishlist)
 
 wishlistRouter.route("/:id")
-    .get(WC.getWishlist)
-    .put(WC.updateWishlist)
-    .delete(WC.deleteWishlist)
+    .delete(WC.removeFromWishlist)
 
 // ! exporting wishlistRouter
 export default wishlistRouter;

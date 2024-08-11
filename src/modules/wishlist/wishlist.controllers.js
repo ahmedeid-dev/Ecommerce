@@ -1,48 +1,32 @@
-import Wishlist from './../../../database/models/wishlists.model.js';
-import apiFeatures from '../../../utils/apiFeatures.js';
+import User from '../../../database/models/users.model.js';
 import catchError from '../../../utils/catchError.js';
+import appError from '../../../utils/appError.js';
 
-// ! getWishlists controller
-const getWishlists = catchError(async (req, res, next) => {
-    const features = apiFeatures(Wishlist.find(), req.query)
-    let wishlists = await features.query;
-    res.status(200).json({
-        status: "success", meta: {
-            page: features.page,
-            count: wishlists.length,
-        }, wishlists
-    });
+// ! addToWishlist controller
+const addToWishlist = catchError(async (req, res, next) => {
+    const wishlist = await User.findByIdAndUpdate(req.user.id, { $addToSet: { wishlist: req.body.productId } }, { new: true });
+    !wishlist && next(new appError("wishlist not found", 404));
+    res.status(201).json({ status: "wishlist added successfully", wishlist: wishlist.wishlist });
 })
 
-// ! getWishlist controller
-const getWishlist = catchError(async (req, res, next) => {
-    const wishlist = await Wishlist.findById(req.params.id);
-    res.status(200).json({ status: "success", wishlist });
+// ! removeFromWishlist controller
+const removeFromWishlist = catchError(async (req, res, next) => {
+    const wishlist = await User.findByIdAndUpdate(req.user.id, { $pull: { wishlist: req.params.id } }, { new: true });
+    !wishlist && next(new appError("wishlist not found", 404));
+    res.status(200).json({ status: "wishlist deleted successfully", wishlist: wishlist.wishlist });
+})
+
+// ! getLoggedUserWishlist controller
+const getLoggedUserWishlist = catchError(async (req, res, next) => {
+    const wishlist = await User.findById(req.user.id);
+    !wishlist && next(new appError("wishlist not found", 404));
+    res.status(200).json({ status: "success", wishlist: wishlist.wishlist });
 }
 )
-// ! addWishlist controller
-const addWishlist = catchError(async (req, res, next) => {
-    const wishlist = await Wishlist.create(req.body);
-    res.status(200).json({ status: "wishlist added successfully", wishlist });
-})
-
-// ! updateWishlist controller
-const updateWishlist = catchError(async (req, res, next) => {
-    const wishlist = await Wishlist.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.status(200).json({ status: "wishlist updated successfully", wishlist });
-})
-
-// ! deleteWishlist controller
-const deleteWishlist = catchError(async (req, res, next) => {
-    const wishlist = await Wishlist.findByIdAndDelete(req.params.id);
-    res.status(200).json({ status: "wishlist deleted successfully", wishlist });
-})
 
 // ! exporting controllers
 export {
-    getWishlists,
-    getWishlist,
-    addWishlist,
-    updateWishlist,
-    deleteWishlist
+    addToWishlist,
+    removeFromWishlist,
+    getLoggedUserWishlist,
 }

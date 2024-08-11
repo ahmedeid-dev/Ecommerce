@@ -11,16 +11,16 @@ const addAddress = catchError(async (req, res, next) => {
 
 // ! removeaddress controller
 const removeAddress = catchError(async (req, res, next) => {
-    const address = await User.findByIdAndUpdate(req.user.id, { $pull: { address: req.params.id } }, { new: true });
+    const address = await User.findByIdAndUpdate(req.user.id, { $pull: { addresses: { _id: req.params.id } } }, { new: true });
     !address && next(new appError("address not found", 404));
-    res.status(200).json({ status: "address deleted successfully", address: address.address });
+    res.status(200).json({ status: "address deleted successfully", address: address.addresses });
 })
 
 // ! getLoggedUseraddresses controller
 const getLoggedUseraddresses = catchError(async (req, res, next) => {
     const address = await User.findById(req.user.id);
     !address && next(new appError("address not found", 404));
-    res.status(200).json({ status: "success", address: address.address });
+    res.status(200).json({ status: "success", address: address.addresses });
 }
 )
 

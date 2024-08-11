@@ -1,7 +1,7 @@
 import { connect } from "mongoose";
 
 // ! configurations for connecting to database
-const serverConnection = connect("mongodb://localhost:27017/ecommerce")
+const serverConnection = connect(process.env.DATABASE_URL)
     .then(() => {
         // ! if connection is successfull
         console.log("database Connected Successfully")

@@ -44,7 +44,7 @@ userSchema.pre("save", function () {
 
 // ! hashing password before updating to database
 userSchema.pre("findOneAndUpdate", function () {
-    if (this._update) this._update.password = bcryptjs.hashSync(this._update.password, 8)
+    if (this._update) this._update.password = bcryptjs.hashSync(this._update.password, process.env.SALT_ROUNDS)
 })
 
 // ! creating Usermodel

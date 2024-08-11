@@ -18,7 +18,7 @@ const categorySchema = new Schema({
 });
 
 // ! adding image url
-const baseUrl = "http://localhost:3000/category/"
+const baseUrl = process.env.BASE_URL + "category/"
 categorySchema.post("init", function (doc) {
     if (doc.image) doc.image = baseUrl + doc.image
 })

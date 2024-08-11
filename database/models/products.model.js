@@ -66,7 +66,7 @@ const productSchema = new Schema({
 })
 
 // ! adding image url
-const baseUrl = "http://localhost:3000/product/"
+const baseUrl = process.env.BASE_URL + "product/"
 productSchema.post("init", function (doc) {
     if (doc.imageCover) doc.imageCover = baseUrl + doc.imageCover
 })

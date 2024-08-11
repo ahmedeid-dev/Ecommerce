@@ -6,12 +6,11 @@ import couponRouter from "./modules/coupon/coupon.routes.js"
 import reviewRouter from "./modules/review/review.routes.js"
 import brandRouter from "./modules/brand/brand.routes.js"
 import orderRouter from "./modules/order/order.routes.js"
-import authRouter from "./modules/auth/auth.routes.js"
 import cartRouter from "./modules/cart/cart.routes.js"
 import userRouter from "./modules/user/user.routes.js"
+import authRouter from "./modules/auth/auth.routes.js"
 import globalError from "./middleware/globalError.js"
 import appError from "../utils/appError.js"
-
 const bootstrap = (app) => {
 
     // ! handling root route

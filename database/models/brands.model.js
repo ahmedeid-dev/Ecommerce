@@ -18,7 +18,7 @@ const brandSchema = new Schema({
 })
 
 // ! adding logo url
-const baseUrl = "http://localhost:3000/brand/"
+const baseUrl = process.env.BASE_URL + "brand/"
 brandSchema.post("init", function (doc) {
     if (doc.logo) doc.logo = baseUrl + doc.logo
 })

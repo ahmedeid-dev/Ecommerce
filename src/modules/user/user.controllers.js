@@ -12,7 +12,7 @@ const register = async (req, res, next) => {
         role: user.role,
         name: user.name,
         email: user.email
-    }, "authToken")
+    }, process.env.JWT_SECRET)
     const otp = nanoid(6)
     await User.updateOne({ email: user.email }, { otp, otpExpireAt: Date.now() })
     user.save();
@@ -24,13 +24,13 @@ const register = async (req, res, next) => {
 // ! login controller
 const login = async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email });
-    if (!user || !bcryptjs.compareSync(req.body.oldPassword, user.password)) return res.status(401).json({ status: "error", error: "invalid credentials" });
+    if (!user || !bcryptjs.compareSync(req.body.password, user.password)) return res.status(401).json({ status: "error", error: "invalid credentials" });
     const token = jwt.sign({
         _id: user._id,
         role: user.role,
         name: user.name,
         email: user.email
-    }, "authToken")
+    }, process.env.JWT_SECRET)
     res.status(200).json({ status: "success", user, token });
 }
 
@@ -44,7 +44,7 @@ const changePassword = async (req, res, next) => {
         role: user.role,
         name: user.name,
         email: user.email
-    }, "authToken")
+    }, process.env.JWT_SECRET)
     await user.save();
     res.status(200).json({ status: "password changed successfully", user, token });
 }
@@ -70,7 +70,7 @@ const resetPassword = async (req, res, next) => {
         role: user.role,
         name: user.name,
         email: user.email
-    }, "authToken")
+    }, process.env.JWT_SECRET)
     res.status(200).json({ status: "password Updated Successfully", newUser, token });
 }
 

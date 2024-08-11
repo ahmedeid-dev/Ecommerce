@@ -1,6 +1,6 @@
 import User from '../../../database/models/users.model.js';
 import apiFeatures from '../../../utils/apiFeatures.js';
-import appError from './../../../utils/appError.js';
+import appError from '../../../utils/appError.js';
 import bcryptjs from 'bcryptjs';
 
 // ! getUsers controller

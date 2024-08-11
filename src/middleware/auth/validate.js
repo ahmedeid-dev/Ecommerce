@@ -1,4 +1,4 @@
-import appError from './../../utils/appError.js';
+import appError from '../../../utils/appError.js';
 
 // ! validate middleware 
 const validate = (schema) => {

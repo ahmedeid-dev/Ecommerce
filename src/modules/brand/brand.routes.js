@@ -1,5 +1,7 @@
+import productRouter from './../produst/product.routes.js';
+import validate from "../../middleware/auth/validate.js";
 import { upload } from './../../../utils/fileUpload.js';
-import validate from "../../middleware/validate.js";
+import * as AM from "./../../auth/auth.middleware.js"
 import * as BC from "./brand.controllers.js";
 import * as BV from "./brand.validations.js";
 import { Router } from "express";
@@ -8,11 +10,11 @@ import { Router } from "express";
 const brandRouter = Router()
 brandRouter.route("/")
     .get(BC.getBrands)
-    .post(validate(BV.addBrandValidation), upload.single("logo"), BC.addBrand)
-    .put(validate(BV.updateBrandValidation), upload.single("logo"), BC.updateBrand)
-    .delete(BC.deleteBrand)
+    .post(AM.protectedRoute, AM.allowedTo('admin'), validate(BV.addBrandValidation), upload.single("logo"), BC.addBrand)
+    .put(AM.protectedRoute, AM.allowedTo('admin'), validate(BV.updateBrandValidation), upload.single("logo"), BC.updateBrand)
+    .delete(AM.protectedRoute, AM.allowedTo('admin'), BC.deleteBrand)
 
-// brandRouter.route("/:id/products")
+brandRouter.route("/:brandId/products", productRouter)
 
 brandRouter.route("/:id")
     .get(BC.getBrand)

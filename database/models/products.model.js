@@ -63,6 +63,22 @@ const productSchema = new Schema({
         required: true,
         ref: "Brand"
     }
+}, {
+    // virtuals: true,
+    toJSON: { virtuals: true },
+    id: false
+})
+
+// ! adding virtual reviews
+productSchema.virtual('reviews', {
+    ref: 'Review',
+    localField: '_id',
+    foreignField: 'productId'
+})
+
+// ! populating reviews
+productSchema.pre(/^find/, function () {
+    this.populate("reviews")
 })
 
 // ! adding image url

@@ -34,9 +34,31 @@ const userSchema = new Schema({
         type: Date
     }
 }, {
+    // virtuals: true,
+    toJSON: { virtuals: true },
+    id: false,
     timestamps: true
 })
 
+// ! virtual populate reviews
+userSchema.virtual('reviews', {
+    ref: 'Review',
+    localField: '_id',
+    foreignField: 'userId'
+})
+
+// ! virtual populate orders
+userSchema.virtual('orders', {
+    ref: 'Order',
+    localField: '_id',
+    foreignField: 'userId'
+})
+
+// ! populating reviews
+userSchema.pre(/^find/, function () {
+    this.populate("reviews")
+        .populate("orders")
+})
 
 // ! hashing password before saving to database
 userSchema.pre("save", function () {

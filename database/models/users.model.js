@@ -54,14 +54,14 @@ const userSchema = new Schema({
 userSchema.virtual('reviews', {
     ref: 'Review',
     localField: '_id',
-    foreignField: 'userId'
+    foreignField: 'user'
 })
 
 // ! virtual populate orders
 userSchema.virtual('orders', {
     ref: 'Order',
     localField: '_id',
-    foreignField: 'userId'
+    foreignField: 'user'
 })
 
 // ! populating reviews

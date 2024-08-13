@@ -14,7 +14,7 @@ brandRouter.route("/")
     .put(AM.protectedRoute, AM.allowedTo('admin'), validate(BV.updateBrandValidation), upload.single("logo"), BC.updateBrand)
     .delete(AM.protectedRoute, AM.allowedTo('admin'), BC.deleteBrand)
 
-brandRouter.route("/:brandId/products", productRouter)
+brandRouter.route("/:brand/products", productRouter)
 
 brandRouter.route("/:id")
     .get(BC.getBrand)

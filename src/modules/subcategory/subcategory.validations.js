@@ -22,11 +22,11 @@ const addSubcategoryValidation = joi.object({
             "string.min": "slug must be at least 2 characters long",
             "string.max": "slug must be at most 400 characters long",
         }),
-    categoryId: joi.string()
+    category: joi.string()
         .hex()
         .required()
         .messages({
-            "string.empty": "CategoryId is required",
+            "string.empty": "category is required",
         })
 })
 
@@ -49,10 +49,10 @@ const updateSubcategoryValidation = joi.object({
             "string.min": "slug must be at least 2 characters long",
             "string.max": "slug must be at most 400 characters long",
         }),
-    categoryId: joi.string()
+    category: joi.string()
         .hex()
         .messages({
-            "string.empty": "CategoryId is required",
+            "string.empty": "category is required",
         })
 })
 

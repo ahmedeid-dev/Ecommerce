@@ -13,17 +13,17 @@ const addReviewValidation = joi.object({
         .messages({
             "string.empty": "Rating is required",
         }),
-    productId: joi.string()
+    product: joi.string()
         .hex()
         .required()
         .messages({
-            "string.empty": "ProductId is required",
+            "string.empty": "product is required",
         }),
-    userId: joi.string()
+    user: joi.string()
         .hex()
         .required()
         .messages({
-            "string.empty": "UserId is required",
+            "string.empty": "user is required",
         }),
 })
 
@@ -37,15 +37,15 @@ const updateReviewValidation = joi.object({
         .messages({
             "string.empty": "Rating is required",
         }),
-    productId: joi.string()
+    product: joi.string()
         .hex()
         .messages({
-            "string.empty": "ProductId is required",
+            "string.empty": "product is required",
         }),
-    userId: joi.string()
+    user: joi.string()
         .hex()
         .messages({
-            "string.empty": "UserId is required",
+            "string.empty": "user is required",
         }),
 })
 

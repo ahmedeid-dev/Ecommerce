@@ -1,7 +1,7 @@
 import { model, Schema, Types } from "mongoose";
 
 // ! creating ReviewSchema
-const reviewSchema =new Schema({
+const reviewSchema = new Schema({
     comment: {
         type: String,
         required: true
@@ -10,12 +10,12 @@ const reviewSchema =new Schema({
         type: Number,
         required: true
     },
-    productId: {
+    product: {
         type: Types.ObjectId,
         required: true,
         ref: "Product"
     },
-    userId: {
+    user: {
         type: Types.ObjectId,
         required: true,
         ref: "User"

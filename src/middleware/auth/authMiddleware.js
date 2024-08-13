@@ -20,7 +20,7 @@ const protectedRoute = async (req, res, next) => {
         err && next(new appError("You are not authorized"), 401)
         return decoded
     })
-    // ? checking userId exist
+    // ? checking user exist
     const user = await User.findById(decoded.id)
     !user && next(new appError("You are not authorized"), 401)
     // ? checking token is valid

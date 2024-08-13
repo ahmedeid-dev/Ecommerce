@@ -67,23 +67,23 @@ const addProductValidation = joi.object({
         .messages({
             "string.empty": "RateCount is required",
         }),
-    categoryId: joi.string()
+    category: joi.string()
         .hex()
         .required()
         .messages({
-            "string.empty": "CategoryId is required",
+            "string.empty": "category is required",
         }),
-    subcategoryId: joi.string()
+    subcategory: joi.string()
         .hex()
         .required()
         .messages({
-            "string.empty": "SubcategoryId is required",
+            "string.empty": "Subcategory is required",
         }),
-    brandId: joi.string()
+    brand: joi.string()
         .hex()
         .required()
         .messages({
-            "string.empty": "BrandId is required",
+            "string.empty": "brand is required",
         }),
 })
 
@@ -147,20 +147,20 @@ const updateProductValidation = joi.object({
         .messages({
             "string.empty": "RateCount is required",
         }),
-    categoryId: joi.string()
+    category: joi.string()
         .hex()
         .messages({
-            "string.empty": "CategoryId is required",
+            "string.empty": "category is required",
         }),
-    subcategoryId: joi.string()
+    subcategory: joi.string()
         .hex()
         .messages({
-            "string.empty": "SubcategoryId is required",
+            "string.empty": "Subcategory is required",
         }),
-    brandId: joi.string()
+    brand: joi.string()
         .hex()
         .messages({
-            "string.empty": "BrandId is required",
+            "string.empty": "brand is required",
         }),
 })
 

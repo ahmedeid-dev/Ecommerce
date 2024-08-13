@@ -1,7 +1,7 @@
 import { model, Schema, Types } from "mongoose";
 
 // ! creating SubCategorySchema
-const subCategorySchema =new Schema({
+const subCategorySchema = new Schema({
     name: {
         type: String,
         unique: true,
@@ -12,7 +12,7 @@ const subCategorySchema =new Schema({
         unique: true,
         required: true
     },
-    categoryId: {
+    category: {
         type: Types.ObjectId,
         required: true,
         ref: "Category"

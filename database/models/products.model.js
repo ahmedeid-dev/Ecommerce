@@ -55,17 +55,17 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     },
-    categoryId: {
+    category: {
         type: Types.ObjectId,
         required: true,
         ref: "Category"
     },
-    subcategoryId: {
+    subcategory: {
         type: Types.ObjectId,
         required: true,
         ref: "Subcategory"
     },
-    brandId: {
+    brand: {
         type: Types.ObjectId,
         required: true,
         ref: "Brand"
@@ -80,7 +80,7 @@ const productSchema = new Schema({
 productSchema.virtual('reviews', {
     ref: 'Review',
     localField: '_id',
-    foreignField: 'productId'
+    foreignField: 'product'
 })
 
 // ! populating reviews

@@ -4,7 +4,7 @@ import appError from '../../../utils/appError.js';
 
 // ! addToWishlist controller
 const addToWishlist = catchError(async (req, res, next) => {
-    const wishlist = await User.findByIdAndUpdate(req.user._id, { $addToSet: { wishlist: req.body.productId } }, { new: true });
+    const wishlist = await User.findByIdAndUpdate(req.user._id, { $addToSet: { wishlist: req.body.product } }, { new: true });
     !wishlist && next(new appError("wishlist not found", 404));
     res.status(201).json({ status: "wishlist added successfully", wishlist: wishlist.wishlist });
 })

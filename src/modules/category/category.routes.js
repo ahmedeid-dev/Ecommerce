@@ -9,7 +9,7 @@ import { Router } from "express";
 // ! creating categoryRouter
 const categoryRouter = Router();
 
-categoryRouter.use("/:categoryId/subcategories", subcategoryRouter)
+categoryRouter.use("/:category/subcategories", subcategoryRouter)
 
 categoryRouter.route("/")
     .get(CC.getCategories)

@@ -13,13 +13,13 @@ export const sendEmailService = async (
     const transporter = nodemailer.createTransport({
         service: "Gmail",
         auth: {
-            user: "a.email2260@gmail.com",
-            pass: "asllpvdzmutarqns",
+            user: process.env.user,
+            pass: process.env.pass,
         },
     });
     // ! message information to send 
     const info = await transporter.sendMail({
-        from: `Ecommerce <a.email2260@gmail.com>`,
+        from: `Ecommerce <${process.env.user}>`,
         to,
         subject,
         text: textMessage,

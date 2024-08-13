@@ -8,7 +8,7 @@ import bootstrap from './src/bootstrap.js';
 import express from "express"
 import dotenv from "dotenv"
 const app = express()
-const port = 3000
+const port = process.env.port || 3000
 dotenv.config({ path: "./config/.env" })
 
 app.use(express.json())

@@ -10,13 +10,11 @@ const cartRouter = Router();
 cartRouter.use(AM.protectedRoute, AM.allowedTo('user'))
 
 cartRouter.route("/")
-    .get(CC.getCarts)
-    .post(validate(CV.addCartValidation),CC.addCart)
-
-cartRouter.route("/:id")
-    .get(CC.getCart)
-    .put(validate(CV.updateCartValidation),CC.updateCart)
-    .delete(AM.allowedTo('user','admin'),CC.deleteCart)
+    .delete(CC.clearCart)
+    .get(CC.getLoggedUserCart)
+    .patch(CC.removeProductFromCart)
+    .post(validate(CV.addCartValidation), CC.addToCart)
+    .put(validate(CV.updateCartValidation), CC.updateProductQuantity)
 
 // ! exporting cartRouter
 export default cartRouter

@@ -29,7 +29,14 @@ const productSchema = new Schema({
     },
     discount: {
         type: Number,
-        min: 0
+        default: 0,
+        min: 0,
+    },
+    priceAfterDiscount: {
+        type: Number,
+        default: function () {
+            return this.price - (this.price * this.discount / 100)
+        }
     },
     quantity: {
         type: Number,

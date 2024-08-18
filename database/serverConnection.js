@@ -1,4 +1,6 @@
 import { connect } from "mongoose";
+import dotenv from "dotenv"
+dotenv.config({ path: "./config/.env" })
 
 // ! configurations for connecting to database
 const serverConnection = connect(process.env.MONGO_ATLAS_URL)

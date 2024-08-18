@@ -3,18 +3,17 @@ import * as OC from "./order.controllers.js"
 import { Router } from "express";
 
 // ! creating orderRouter
-const orderRouter = Router();
+const orderRouter = Router({ mergeParams: true, caseSensitive: false });
 
-couponRouter.use(AM.protectedRoute, AM.allowedTo('user'))
+couponRouter.use(AM.protectedRoute)
 
 orderRouter.route("/")
-    .get(OC.getOrders)
-    .post(OC.addOrder)
+    .get(AM.allowedTo('user', 'admin'), OC.getUserOrders)
+    .post(AM.allowedTo('user'), OC.createCashOrder)
 
-orderRouter.route("/:id")
-    .get(OC.getOrder)
-    .put(OC.updateOrder)
-    .delete(OC.deleteOrder)
+orderRouter.post('session', AM.allowedTo('user'), OC.createCashOrder)
+
+orderRouter.get('/all', AM.allowedTo('admin'), OC.getAllOrders)
 
 // ! exporting orderRouter
 export default orderRouter;

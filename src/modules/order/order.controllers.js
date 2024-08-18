@@ -20,6 +20,7 @@ const getOrder = catchError(async (req, res, next) => {
     res.status(200).json({ status: "success", order });
 }
 )
+
 // ! addOrder controller
 const addOrder = catchError(async (req, res, next) => {
     const order = await Order.create(req.body);

@@ -11,7 +11,9 @@ orderRouter.route("/")
     .get(AM.allowedTo('user', 'admin'), OC.getUserOrders)
     .post(AM.allowedTo('user'), OC.createCashOrder)
 
-orderRouter.post('session', AM.allowedTo('user'), OC.createCashOrder)
+orderRouter.post('/session', AM.allowedTo('user'), OC.createSessionOrder)
+
+orderRouter.post("/webhook", AM.allowedTo('admin'), OC.webhook)
 
 orderRouter.get('/all', AM.allowedTo('admin'), OC.getAllOrders)
 

@@ -1,11 +1,11 @@
-import * as AM from "./../../auth/auth.middleware.js"
+import * as AM from "./../../middleware/auth/authMiddleware.js"
 import * as OC from "./order.controllers.js"
 import { Router } from "express";
 
 // ! creating orderRouter
 const orderRouter = Router({ mergeParams: true, caseSensitive: false });
 
-couponRouter.use(AM.protectedRoute)
+orderRouter.use(AM.protectedRoute)
 
 orderRouter.route("/")
     .get(AM.allowedTo('user', 'admin'), OC.getUserOrders)

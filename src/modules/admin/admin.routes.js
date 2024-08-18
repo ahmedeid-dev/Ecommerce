@@ -1,7 +1,7 @@
 import * as AM from "../../middleware/auth/authMiddleware.js";
 import validate from "../../middleware/auth/validate.js";
-import * as AC from "./auth.controllers.js"
-import * as AV from "./auth.validations.js"
+import * as AC from "./admin.controllers.js"
+import * as AV from "./admin.validations.js"
 import { Router } from "express";
 
 // ! creating adminRouter

@@ -1,7 +1,7 @@
+import * as AM from "./../../middleware/auth/authMiddleware.js"
 import productRouter from './../produst/product.routes.js';
 import validate from "../../middleware/auth/validate.js";
 import { upload } from './../../../utils/fileUpload.js';
-import * as AM from "./../../auth/auth.middleware.js"
 import * as BC from "./brand.controllers.js";
 import * as BV from "./brand.validations.js";
 import { Router } from "express";

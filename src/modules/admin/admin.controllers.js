@@ -60,9 +60,9 @@ const deleteUser = async (req, res, next) => {
 
 // ! exporting controllers
 export {
-    getUsers,
     getUser,
     addUser,
+    getUsers,
+    deleteUser,
     updateUser,
-    deleteUser
 }

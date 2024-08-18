@@ -1,4 +1,4 @@
-import * as AM from "./../../auth/auth.middleware.js"
+import * as AM from "./../../middleware/auth/authMiddleware.js"
 import * as WC from "./wishlist.controllers.js"
 import { Router } from "express";
 // ! creating wishlistRouter

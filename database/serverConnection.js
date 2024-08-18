@@ -1,7 +1,7 @@
 import { connect } from "mongoose";
 
 // ! configurations for connecting to database
-const serverConnection = connect(process.env.DATABASE_URL)
+const serverConnection = connect(process.env.MONGO_ATLAS_URL)
     .then(() => {
         // ! if connection is successfull
         console.log("database Connected Successfully")

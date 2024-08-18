@@ -1,5 +1,5 @@
+import * as AM from "./../../middleware/auth/authMiddleware.js"
 import validate from "../../middleware/auth/validate.js";
-import * as AM from "./../../auth/auth.middleware.js"
 import * as CC from "./cart.controllers.js"
 import * as CV from "./cart.validations.js"
 import { Router } from "express";

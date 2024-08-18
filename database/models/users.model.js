@@ -1,6 +1,5 @@
 import { model, Schema, Types } from "mongoose";
 import bcryptjs from "bcryptjs"
-import { string } from "joi";
 
 // ! creating UserSchema
 const userSchema = new Schema({

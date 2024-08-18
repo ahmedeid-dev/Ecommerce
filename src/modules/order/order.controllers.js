@@ -67,6 +67,7 @@ const createCashOrder = catchError(async (req, res, next) => {
     res.status(200).json({ status: "order added successfully", order });
 })
 // ! createSessionOrder controller
+// !كمل هناااااااا
 const createSessionOrder = catchError(async (req, res, next) => {
     const order = await Order.create(req.body);
     res.status(200).json({ status: "order added successfully", order });
@@ -74,8 +75,7 @@ const createSessionOrder = catchError(async (req, res, next) => {
 
 // ! exporting controllers
 export {
-    updateOrder,
-    deleteOrder,
+    getAllOrders,
     getUserOrders,
     createCashOrder,
     createSessionOrder,

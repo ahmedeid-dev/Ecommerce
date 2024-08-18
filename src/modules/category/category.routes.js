@@ -1,7 +1,7 @@
 import subcategoryRouter from '../subcategory/subcategory.routes.js';
+import * as AM from "./../../middleware/auth/authMiddleware.js"
 import validate from "../../middleware/auth/validate.js";
 import { upload } from './../../../utils/fileUpload.js';
-import * as AM from "./../../auth/auth.middleware.js"
 import * as CC from "./category.controllers.js"
 import * as CV from "./category.validations.js"
 import { Router } from "express";
